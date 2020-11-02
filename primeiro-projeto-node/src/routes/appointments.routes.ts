@@ -13,6 +13,8 @@ appointmentsRouter.post('/', (request, response) => {
         date,
     };
 
+    appointments.push(appointment);
+
     return response.json(appointment);
 });
 
