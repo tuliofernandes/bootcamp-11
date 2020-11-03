@@ -9,30 +9,30 @@ const appointmentsRouter = Router();
 const appointmentsRepository = new AppointmentRepository();
 
 appointmentsRouter.get('/', (request, response) => {
-    const appointments = appointmentsRepository.all();
+  const appointments = appointmentsRepository.all();
 
-    return response.json(appointments);
+  return response.json(appointments);
 });
 
 appointmentsRouter.post('/', (request, response) => {
-    try {
-        const { provider, date } = request.body;
+  try {
+    const { provider, date } = request.body;
 
-        const parsedDate = parseISO(date);
+    const parsedDate = parseISO(date);
 
-        const createdAppointment = new CreateAppointmentService(
-            appointmentsRepository,
-        );
+    const createdAppointment = new CreateAppointmentService(
+      appointmentsRepository,
+    );
 
-        const appointment = createdAppointment.execute({
-            date: parsedDate,
-            provider,
-        });
+    const appointment = createdAppointment.execute({
+      date: parsedDate,
+      provider,
+    });
 
-        return response.json(appointment);
-    } catch (error) {
-        return response.status(400).json({ error: error.message });
-    }
+    return response.json(appointment);
+  } catch (error) {
+    return response.status(400).json({ error: error.message });
+  }
 });
 
 export default appointmentsRouter;
