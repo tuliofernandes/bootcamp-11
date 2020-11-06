@@ -27,4 +27,4 @@ class User {
   updated_at: Date;
 }
 
-export default Appointment;
+export default User;
